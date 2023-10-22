@@ -96,14 +96,14 @@ def is_anonymous(p_user_name):
 
 def is_registered_student(p_user_name, p_module_name):
     for module in modules:
-        while is_student(p_user_name) and p_user_name in module['registered'] and p_module_name == module['title']:
+        while isinstance(is_student(p_user_name), (list)) and p_user_name in module['registered'] and p_module_name == module['title']:
                 return module_permissions[roles["REST"]]
     return 'no'       
 
 
 def is_alumni(p_user_name, p_module_name):
     for module in modules:
-        while is_student(p_user_name) and p_user_name in module['alumni'] and p_module_name == module['title']:
+        while isinstance(is_student(p_user_name), (list)) and p_user_name in module['alumni'] and p_module_name == module['title']:
             return module_permissions[roles['AL']]
     return 'no'
 
@@ -111,7 +111,7 @@ def is_alumni(p_user_name, p_module_name):
 def admin_in_teachers(p_user_name, p_module_name):
 
     for module in modules:
-        while is_teacher(p_user_name) and p_module_name == module['title'] and p_user_name == module['teacher']:
+        while isinstance(is_teacher(p_user_name), (list)) and p_module_name == module['title'] and p_user_name == module['teacher']:
             return module_permissions[roles['AD']]
     return 'no'
 
